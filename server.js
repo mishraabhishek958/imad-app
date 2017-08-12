@@ -85,6 +85,12 @@ app.get('/:articleName',function (req,res) {
     //articles[articleName] == {} content object of the article-one
     var articleName = req.params.articleName;  // express frame work
   res.send(createTemplate(articles[articleName]));  // express frame work
+});
+
+var counter = 0;
+app.get('/counter', function(req,res) {
+   counter = counter+1;
+   res.send(counter.toString());
     
 });
 
@@ -99,7 +105,6 @@ app.get('/ui/main.js', function (req, res) {
 app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
-
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
