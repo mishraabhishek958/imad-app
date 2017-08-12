@@ -60,10 +60,7 @@ var submit= document.getElementById('submit_btn');
     };
    //render the variable in the correct span
    //Make the request
-   request.open('GET', 'http://mishraabhishek958.imad.hasura-app.io/counter',true);
+   request.open('GET', 'http://mishraabhishek958.imad.hasura-app.io/counter'+ name ,true);
    request.send(null);
    
-   
-     //make a request to server and send the name
-     
- };
+
