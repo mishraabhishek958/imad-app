@@ -62,5 +62,6 @@ var submit= document.getElementById('submit_btn');
    //Make the request
    request.open('GET', 'http://mishraabhishek958.imad.hasura-app.io/submit-name'+ name ,true);
    request.send(null);
-   
+     
+ };   
 
