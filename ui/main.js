@@ -44,7 +44,7 @@ var submit= document.getElementById('submit_btn');
             // Take some action
             if(request.status === 200) {
                  //capture the request and render the list
-                 var names=request.resonseText;
+                 var names=request.responseText;
                  names= JSON.parse(names);   // String to array
                  
                  var list = '';
