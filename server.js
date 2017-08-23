@@ -5,6 +5,16 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var Pool = require('pg').Pool;
+
+var config = {
+    user: 'mishraabhishek958',
+    database: 'mishraabhishek958',
+    host: 'db.imad.hasura-app.io',
+    port:'8432',
+    password: process.env.DB_PASSWORD
+}
+
 var articles = {
     'article-one' :{
         title: 'Article-One |Abhishek',
@@ -83,6 +93,21 @@ app.get('/counter', function(req,res) {
    counter = counter + 1;
    res.send(counter.toString()); //toString to convert number to a string because the request is always send as a string.
 });
+
+var pool = new Pool(config);
+app.get('/test-db', function (req, res) {
+   //make a select request
+   //return a response with the result
+    pool.query(' SELECT * FROM test' , function (err, result) {
+        if (err) {
+            res.status(500).send(err,toString());
+        } else {
+            res.send(JSON.stringyfy(result));
+        }    
+    });
+});
+
+
 
 app.get('/:articleName',function (req,res) {
     //articeName == article-one
