@@ -100,7 +100,7 @@ app.get('/test-db', function (req, res) {
    //return a response with the result
     pool.query(' SELECT * FROM test' , function (err, result) {
         if (err) {
-            res.status(500).send(err,toString());
+            res.status(500).send(err.toString());
         } else {
             res.send(JSON.stringyfy(result));
         }    
