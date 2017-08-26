@@ -123,6 +123,7 @@ app.get('/articles/:articleName',function (req,res) {
     //articeName == article-one
     //articles[articleName] == {} content object of the article-one
  //   var articleName = req.params.articleName;  // express frame work
+ // SELECT * FROM articles WHERE title = '\';DELETE WHERE a = \'asdf'
   pool.query("SELECT * FROM articles WHERE title = ' " + req.params.articleName + "'" , function(err,result) {
       
      if(err){
