@@ -119,11 +119,24 @@ app.get('/customers', function(req, res) {
 });
 
 
-app.get('/:articleName',function (req,res) {
+app.get('/articles/:articleName',function (req,res) {
     //articeName == article-one
     //articles[articleName] == {} content object of the article-one
-    var articleName = req.params.articleName;  // express frame work
-  res.send(createTemplate(articles[articleName]));  // express frame work
+ //   var articleName = req.params.articleName;  // express frame work
+  pool.query("SELECT * FROM article where title = " + req.params.articleName, function(err,result) {
+      
+     if(err){
+         res.status(500).send(err.toString());
+     }  else {
+           if(result.rows.length === 0) {
+               res.status(404).send('Article not found');
+           } else {
+               var articleData = result.rows[0];
+               res.send(createTemplate(articleData));
+           }
+     }
+  });
+//  res.send(createTemplate(articles[articleName]));  // express frame work
 });
 
 app.get('/ui/style.css', function (req, res) {
