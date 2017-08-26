@@ -15,42 +15,6 @@ var config = {
     password: process.env.DB_PASSWORD
 };
 
-var articles = {
-    'article-one' :{
-        title: 'Article-One |Abhishek',
-        heading: 'Article-One',
-        date:'Aug 10 , 2017',
-        content: ` 
-            <p>
-            This is the content for my first article. This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.
-            </p>
-             <p>
-              This is the content for my first article. This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.
-             </p>
-             <p>
-               This is the content for my first article. This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.This is the content for my first article.
-            </p>`
-         },
-    'article-two' :{
-        title: 'Article-Two|Abhishek',
-        heading: 'Article-Two',
-        date:'Aug 20 , 2017',
-        content: ` 
-            <p>
-            This is the content for my Second article.
-       
-            </p>`
-        },
-    'article-three' : {
-        title: 'Article-Three |Abhishek',
-        heading: 'Article-Three',
-        date:'Aug 15 , 2017',
-        content: ` 
-            <p>
-            This is the content for my third article.
-            </p>`
-        }
-};
 function createTemplate(data) { 
 var title=data.title;
 var heading=data.heading;
