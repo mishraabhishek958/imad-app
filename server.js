@@ -106,7 +106,7 @@ app.get('/test-db', function (req, res) {
         }    
     });
 });
-app.get('/test-db', function(req, res) {
+app.get('/customers', function(req, res) {
     
    pool.query('SELECT * FROM customers' , function(err,result) {
        if(err) {
