@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var crypto = require('crypto');
+var bodyParser = require('body-parser');
 
 var app = express();
 app.use(morgan('combined'));
@@ -52,7 +53,7 @@ return htmlTemplate;
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-
+app.use(bodyParse.json());
 function hash (input, salt) {
     //How do we create a hash
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
@@ -66,6 +67,27 @@ app.get('/hash/:input', function(req,res) {
    res.send(hashedString);
     
 });
+ 
+app.post('/create-user', function(req,res) {
+   //username,password
+   //JSON
+   var username = req.body.username;
+   var password = req.body.password;
+   var salt = crypto.getRandomBytes(128).toString('hex');
+   var toString = hash(password,salt);
+   pool.query('INSERT INTO "user (username, password )VALUES ($1,$2)',[username,toString], function(err,result) {
+        if (err) {
+            res.status(500).send(err.toString());
+        } else {
+            res.send('USER SUCCESSFULLY CREATED: '+ username );
+        }   
+    });
+    
+});
+
+
+
+
 
 var counter = 0; // initialise to 0
 app.get('/counter', function(req,res) {
