@@ -106,7 +106,17 @@ app.get('/test-db', function (req, res) {
         }    
     });
 });
-
+app.get('/test-db', function(req, res) {
+    
+   pool.query('SELECT * FROM customers' , function(err,result) {
+       if(err) {
+           res.status(500).send(err.toSring());
+          }
+       else {
+           res.send(JSON.stringify(result.rows));
+       }      
+   }); 
+});
 
 
 app.get('/:articleName',function (req,res) {
