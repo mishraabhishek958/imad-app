@@ -121,23 +121,23 @@ app.get('/customers', function(req, res) {
 
 app.get('/articles/:articleName',function (req,res) {
     //articeName == article-one
-    //articles[articleName] == {} content object of the article-one
- //   var articleName = req.params.articleName;  // express frame work
- // SELECT * FROM articles WHERE title = '\';DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM article WHERE title = ' " + req.params.articleName + "'" , function( err, result) {
+    //articles[articleName] == {} content object of the article one
+    
+ // SELECT * FROM articles WHERE title = '\'; DELETE WHERE a = \'asdf'
+  pool.query("SELECT * FROM article WHERE title = $1" ,[req.params.articleName], function( err, result) {
       
-     if(err){
+     if(err) {
          res.status(500).send(err.toString());
-     }  else {
+      }  else {
            if(result.rows.length === 0) {
-               res.status(404).send('Article  found');
+               res.status(404).send('Article not found');
            } else {
                var articleData = result.rows[0];
                res.send(createTemplate(articleData));
            }
      }
   });
-//  res.send(createTemplate(articles[articleName]));  // express frame work
+    
 });
 
 app.get('/ui/style.css', function (req, res) {
